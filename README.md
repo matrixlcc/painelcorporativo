@@ -50,7 +50,7 @@
   </li>
   <li>
     <p>Nossos testes executados foram feitos a partir de um aparelho microcomputador Linux mint ligado a uma TV.</p>
-    <p>Foi configurado no sistema operacional no medo de inicio do sistema para executar o navegador Firefox que já estava projetado para abrir a URL como pagina de inicio e com um plugin para tela cheia automática, além do próprio microcomputador já configurado, caso tenha queda de energia, para reiniciar automaticamente.</p>
+    <p>Foi configurado no sistema operacional para executar o navegador Firefox ao iniciar o sistema, além disso o navegador foi ajustado para abrir a URL como pagina de inicio e com um plugin para tela cheia automática, além do próprio microcomputador já configurado, caso tenha queda de energia, para reiniciar automaticamente.</p>
   </li>
   <li>
     <p>Foi utilizado um link de marcação com diretório diferente para cada aparelho em cada setor do ambiente de teste.</p>

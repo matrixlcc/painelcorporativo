@@ -95,9 +95,7 @@ setTimeout(function() {
 $url=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 if(strpos( $url, '/')){
   $url=explode('/',$url);
-  $tot=count($url)-1;
-  unset($url[$tot]);
-  $url=implode('/',$url);
+  $url=$url[0].'/'.$url[1];
 }
 echo '<h2>Exemplos url por setores</h2>
 <ul>
@@ -115,9 +113,9 @@ echo '<h2>Exemplos url por setores</h2>
 
 ?>
 <script type="text/javascript">
-var exibe=<?=$arq->tempo?>*1000;
+var exibe=10000;
 setTimeout(function() {
-  window.location.href = "";
+  window.location.href = "<?=$arq->link?>";
 }, exibe); // 1/5 minutos
 </script>
 

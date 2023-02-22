@@ -81,20 +81,22 @@ class arquivos{
   //--------------------------------------------
   public function lista_conteudo($dir,$nome_dir){
     $dir=$this->trata_url($dir);
-    //$this->lista=[];
-    $lista=array_diff(scandir($this->raiz.$dir), array('.','..'));
-    foreach ($lista as $l) {
-      //$l=explode('');
-      if(strpos( str_replace($this->ext_video, '</exe/>', $l), '</exe/>') ){
-        $ext=explode('.',$l);
-        $this->lista[]=['arquivo'=>$dir.'/'.$l,'ext'=>$ext[1],'tipo'=>'video'];
-        $this->tot++;
-      }else if(strpos( str_replace($this->ext_foto, '</exe/>', $l), '</exe/>') ){
-        $ext=explode('.',$l);
-        $this->lista[]=['arquivo'=>$dir.'/'.$l,'ext'=>$ext[1],'tipo'=>'foto'];
-        $this->tot++;
+    if(file_exists($this->raiz.$dir)){
+
+      $lista=array_diff(scandir($this->raiz.$dir), array('.','..'));
+      foreach ($lista as $l) {
+
+        if(strpos( str_replace($this->ext_video, '</exe/>', $l), '</exe/>') ){
+          $ext=explode('.',$l);
+          $this->lista[]=['arquivo'=>$dir.'/'.$l,'ext'=>$ext[1],'tipo'=>'video'];
+          $this->tot++;
+        }else if(strpos( str_replace($this->ext_foto, '</exe/>', $l), '</exe/>') ){
+          $ext=explode('.',$l);
+          $this->lista[]=['arquivo'=>$dir.'/'.$l,'ext'=>$ext[1],'tipo'=>'foto'];
+          $this->tot++;
+        }
       }
-    }
+    }//if
     return $this->lista;
   }//mt
   //---------------------------------------------
@@ -103,10 +105,11 @@ class arquivos{
     if( isset($_SESSION[$dir]) ){
       $lista=$_SESSION[$dir];
       $this->tot=$_SESSION['tot_'.$dir];
-      //print_r($_SESSION);
+
     }else{
       $lista=$this->carrega_lista();
     }
+
 
     if($this->tot != -1){
 
@@ -117,19 +120,27 @@ class arquivos{
       if($this->proximo>$this->tot){
         $this->proximo=0;
       }
+
+
       if( !file_exists($this->play['arquivo']) ){
         $this->play['tipo']=false;
         $this->proximo=0;
       }
 
-      //$this->recebe_parametros();
-      $this->link='?seq='.$this->proximo.
-      '&tempo='.$this->tempo.
-      '&video='.implode(',',$this->ext_video).
-      '&foto='.implode(',',$this->ext_foto).
-      '&dir='.$dir;
 
-    }//if
+
+    }else{
+      $this->play['tipo']=false;
+      $this->proximo=0;
+    }
+
+
+    $this->link='?seq='.$this->proximo.
+    '&tempo='.$this->tempo.
+    '&video='.implode(',',$this->ext_video).
+    '&foto='.implode(',',$this->ext_foto).
+    '&dir='.$dir;
+
   }//mt
 
 }//class
