@@ -1,5 +1,14 @@
 <h1>Painel Corporativo web com PHP e Javascript</h1>
-
+<h2>Novidades adicionais!</h2>
+<ul>
+  <li>
+    <p>Mais rapidez e velocidade na verificação do diretório das mídias digitais, além de oferecer a possibilidade de integrar vários diretórios em uma mesmo link</p>
+  </li>
+  <li>
+    <p>A versão anterior se sobrecarregava na hora de verificar a lista de mídias, pois era feito em tempo de transição de uma mídia para outra.</p>
+    <p>Agora a verificação da lista é feita durante a execução das mídias, ou seja enquanto o navegador executa a imagem ou o video em backend ele já faz um pré carregamentos da lista de mídias, ganhando muito mais velocidade nas transições de mídia o que possibilitou agregar vários diretórios ao mesmo tempo.</p>
+  </li>
+</ul>
 <h2>Finalidade</h2>
 <ul>
   <li>
@@ -80,5 +89,9 @@
   <li>
     <p>url para área de desenvolvimento</p>
     <h3>http://'.$url.'/?tempo=30&foto=.mp4&foto=.jpg,.png&dir=diretorio/setor/desenvolvimento</h3>
+  </li>
+  <li>
+    <p>url para listar os 2 diretórios</p>
+    <h3>http://'.$url.'/?tempo=30&foto=.mp4&foto=.jpg,.png&dir=diretorio/setor/desenvolvimento,diretorio/setor/administrativo</h3>
   </li>
 </ul>

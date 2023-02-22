@@ -2,6 +2,7 @@
 require 'class/arquivos.php';
 $arq=new arquivos();
 $arq->monta_mural();
+
 ?>
 <html lang="pt-br">
 <head>
@@ -16,15 +17,18 @@ $arq->monta_mural();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link type="text/css" href="layout/css/template.css" rel="stylesheet" />
 
+
   <title>
     Paine Corporativo
   </title>
-
+  <script type="text/javascript" src="layout/js/blib-jquery_1.5.js"></script>
+  <script type="text/javascript" src="layout/js/blib-ajax.js"></script>
+  <script type="text/javascript" src="layout/js/blib-formulario.js" ></script>
 
 
 </head>
 
-  <body>
+  <body link="<?=$arq->link?>">
 <?php if($arq->play['tipo']=='video'){ ?>
   <video id="myVideo" class="p_painel_play_video" controls autoplay muted>
   <source src="<?=$arq->play['arquivo']?>" type="video/<?=$arq->play['ext']?>">
@@ -36,6 +40,7 @@ $arq->monta_mural();
 </video>
 
 <script type="text/javascript">
+
 var vid = document.getElementById("myVideo");
 var exibe=false;
 vid.ontimeupdate = function() {
@@ -51,10 +56,12 @@ vid.ontimeupdate = function() {
 
   }//if
 }
+
 </script>
 <?php }else if($arq->play['tipo']=='foto'){ ?>
 <div class="p_painel_play_foto" style="background-image:url(<?=$arq->play['arquivo']?>);"></div>
 <script type="text/javascript">
+
 var exibe=<?=$arq->tempo?>*1000;
 setTimeout(function() {
   window.location.href = "<?=$arq->link?>";
