@@ -5,7 +5,7 @@ if(isset($_POST['true'])){
   $arq=new arquivos('../../');
   $arq->carrega_lista();
   $_SESSION['backend']='true';
-  //print_r($_SESSION);
+  print_r($_SESSION);
 }else{
   echo'Erro!';
 }

@@ -22,53 +22,31 @@ $arq->monta_mural();
     Paine Corporativo
   </title>
   <script type="text/javascript" src="layout/js/blib-jquery_1.5.js"></script>
-  <script type="text/javascript" src="layout/js/blib-ajax.js"></script>
+  <script type="text/javascript" src="layout/js/blib-ajax-dell.js"></script>
   <script type="text/javascript" src="layout/js/blib-formulario.js" ></script>
 
 
 </head>
 
-  <body link="<?=$arq->link?>">
-<?php if($arq->play['tipo']=='video'){ ?>
-  <video id="myVideo" class="p_painel_play_video" controls autoplay muted>
-  <source src="<?=$arq->play['arquivo']?>" type="video/<?=$arq->play['ext']?>">
-  <object>
-    <embed autoplay="autoplay" src="<?=$arq->play['arquivo']?>" type="application/x-shockwave-flash"
-    allowfullscreen="true" allowscriptaccess="always">
-  </object>
-  Formato não suportado
-</video>
+  <body link="<?=$arq->link?>" tipo="<?=$arq->play['tipo']?>" tempo="<?=$arq->tempo?>" arquivo="<?=$arq->play['arquivo']?>">
 
-<script type="text/javascript">
-
-var vid = document.getElementById("myVideo");
-var exibe=false;
-vid.ontimeupdate = function() {
-  if(exibe==false){
-
-    exibe=vid.duration;
-    exibe=exibe*970;
-
-    setTimeout(function() {
-      window.location.href = "<?=$arq->link?>";
-    }, exibe); // 1/5 minutos
+  <video id="myVideo" style="display:none;" class="p_painel_play_video" controls autoplay muted>
+    <source src="<?=$arq->play['arquivo']?>" type="video/<?=$arq->play['ext']?>">
+    <object>
+      <embed autoplay="autoplay" src="<?=$arq->play['arquivo']?>" type="application/x-shockwave-flash"
+      allowfullscreen="true" allowscriptaccess="always">
+    </object>
+    Formato não suportado
+  </video>
 
 
-  }//if
-}
 
-</script>
-<?php }else if($arq->play['tipo']=='foto'){ ?>
-<div class="p_painel_play_foto" style="background-image:url(<?=$arq->play['arquivo']?>);"></div>
-<script type="text/javascript">
 
-var exibe=<?=$arq->tempo?>*1000;
-setTimeout(function() {
-  window.location.href = "<?=$arq->link?>";
-}, exibe); // 1/5 minutos
-</script>
+<div class="p_painel_play_foto" style="display:none;"></div>
 
-<?php }else{?>
+
+<div class="p_painel_play_none" style="display:none;">
+
   <h1>Não foi encontrado Arquivos!</h1>
   <h2>Parâmetros URL suportados: </h2>
   <ul>
@@ -112,14 +90,9 @@ echo '<h2>Exemplos url por setores</h2>
 
 
 ?>
-<script type="text/javascript">
-var exibe=10000;
-setTimeout(function() {
-  window.location.href = "<?=$arq->link?>";
-}, exibe); // 1/5 minutos
-</script>
+</div>
 
-<?php }?>
+
 </body>
 
 </html>
